@@ -4,7 +4,6 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 	@Override
-
 	protected String[] getServletMappings() {
 		return new String[] { "/" };
 	}
@@ -19,4 +18,3 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 		return new Class<?>[] { WebConfig.class };
 	}
 }
-

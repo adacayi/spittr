@@ -14,7 +14,6 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @ComponentScan("com.sanver.trials.spittr.home")
 public class WebConfig implements WebMvcConfigurer {
 	@Bean
-
 	public ViewResolver viewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 		resolver.setPrefix("/WEB-INF/views/");
@@ -28,4 +27,3 @@ public class WebConfig implements WebMvcConfigurer {
 		configurer.enable();
 	}
 }
-

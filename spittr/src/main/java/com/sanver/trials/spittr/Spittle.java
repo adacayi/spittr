@@ -11,13 +11,19 @@ public class Spittle {
 	private final Date time;
 	private Double latitude;
 	private Double longitude;
+	private static long lastId = 0;
+	private static Object lockObject = new Object();
 
 	public Spittle(String message, Date time) {
 		this(message, time, null, null);
 	}
 
 	public Spittle(String message, Date time, Double longitude, Double latitude) {
-		this.id = null;
+		synchronized (lockObject) {
+			this.id = lastId;
+			lastId++;
+		}
+
 		this.message = message;
 		this.time = time;
 		this.longitude = longitude;

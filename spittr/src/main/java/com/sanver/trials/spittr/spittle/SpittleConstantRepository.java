@@ -21,7 +21,7 @@ public class SpittleConstantRepository implements SpittleRepository {
 	@Override
 	public List<Spittle> findSpittles(long max, int count) {
 		Comparator<Spittle> idReversed = Comparator.comparing((Spittle s) -> s.getId()).reversed();
-		List<Spittle> resultList = spittleList.parallelStream().filter(x -> x.getId() < max).sorted(idReversed)
+		List<Spittle> resultList = spittleList.parallelStream().filter(x -> x.getId() <= max).sorted(idReversed)
 				.sequential().limit(count).collect(Collectors.toList());
 		return resultList;
 	}

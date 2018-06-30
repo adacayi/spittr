@@ -39,4 +39,9 @@ public class SpittleConstantRepository implements SpittleRepository {
 	public double getRandomNumber(double minInclusive, double maxExclusive) {
 		return Math.random() * (maxExclusive - minInclusive) + minInclusive;
 	}
+
+	public Spittle findOne(long id) {
+		Spittle result = spittleList.stream().filter(x -> x.getId() == id).findFirst().orElse(null);
+		return result;
+	}
 }

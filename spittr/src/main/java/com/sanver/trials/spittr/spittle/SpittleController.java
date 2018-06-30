@@ -5,6 +5,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -24,5 +25,11 @@ public class SpittleController {
 			@RequestParam(value = "count", defaultValue = "20") int count) {
 		model.addAttribute(spittleRepository.findSpittles(max, count));
 		return "spittles";
+	}
+
+	@RequestMapping(value = "/{id}", method = GET)
+	public String spittle(Model model, @PathVariable long id) {
+		model.addAttribute(spittleRepository.findOne(id));
+		return "spittle";
 	}
 }

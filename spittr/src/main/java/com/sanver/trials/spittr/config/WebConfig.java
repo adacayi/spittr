@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.sanver.trials.spittr.home")
+@ComponentScan("com.sanver.trials.spittr")
 public class WebConfig implements WebMvcConfigurer {
 	@Bean
 	public ViewResolver viewResolver() {

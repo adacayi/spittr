@@ -31,7 +31,7 @@ public class SpittleConstantRepository implements SpittleRepository {
 		List<Spittle> spittles = new ArrayList<Spittle>();
 
 		for (int i = 0; i < count; i++) {
-			spittles.add(new Spittle("Spittle " + i, new Date(), getRandomNumber(-180, 180), getRandomNumber(-90, 90)));
+			spittles.add(new Spittle("Spittle " + i, new Date(), getRandomNumber(-90, 90), getRandomNumber(-180, 180)));
 		}
 
 		return spittles;

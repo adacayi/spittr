@@ -50,4 +50,13 @@ public class SpitterControllerTest {
 		MockMvc mockMvc = standaloneSetup(controller).build();
 		mockMvc.perform(get("/spitter/jbauer")).andExpect(redirectedUrl("/"));
 	}
+
+	@Test
+	public void validationNotSuccessful() throws Exception {
+		SpitterRepository repository = mock(SpitterRepository.class);
+		SpitterController controller = new SpitterController(repository);
+		MockMvc mockMvc = standaloneSetup(controller).build();
+		mockMvc.perform(post("/spitter/register").param("firstName", "").param("lastName", "").param("username", "")
+				.param("password", "")).andExpect(view().name("registerForm"));
+	}
 }

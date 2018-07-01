@@ -36,8 +36,8 @@ public class SpitterConstantRepository implements SpitterRepository {
 		return spitters;
 	}
 
-	public Spitter findOne(long id) {
-		Spitter result = spitterList.stream().filter(x -> x.getId() == id).findFirst().orElse(null);
+	public Spitter findByUsername(String username) {
+		Spitter result = spitterList.stream().filter(x -> x.getUsername().equals(username)).findFirst().orElse(null);
 		return result;
 	}
 

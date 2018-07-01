@@ -31,4 +31,23 @@ public class SpitterControllerTest {
 				.param("username", "jbauer").param("password", "24hours")).andExpect(redirectedUrl("/spitter/jbauer"));
 		verify(mockRepository, atLeastOnce()).save(unsaved);
 	}
+
+	@Test
+	public void shouldShowProfile() throws Exception {
+		SpitterRepository repository = mock(SpitterRepository.class);
+		Spitter bauer = new Spitter("jbauer", "24hours", "Jack", "Bauer");
+		when(repository.findByUsername("jbauer")).thenReturn(bauer);
+		SpitterController controller = new SpitterController(repository);
+		MockMvc mockMvc = standaloneSetup(controller).build();
+		mockMvc.perform(get("/spitter/jbauer")).andExpect(view().name("profile"))
+				.andExpect(model().attributeExists("spitter")).andExpect(model().attribute("spitter", bauer));
+	}
+
+	@Test
+	public void shouldRedirectHomeIfInvalidUser() throws Exception {
+		SpitterRepository repository = mock(SpitterRepository.class);
+		SpitterController controller = new SpitterController(repository);
+		MockMvc mockMvc = standaloneSetup(controller).build();
+		mockMvc.perform(get("/spitter/jbauer")).andExpect(redirectedUrl("/"));
+	}
 }

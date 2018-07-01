@@ -7,7 +7,7 @@ import com.sanver.trials.spittr.Spitter;
 public interface SpitterRepository {
 	List<Spitter> findSpitters(long max, int count);
 
-	Spitter findOne(long id);
+	Spitter findByUsername(String username);
 
 	Spitter save(Spitter unsaved);
 }

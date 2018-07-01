@@ -22,6 +22,8 @@ public class Spitter {
 	@Size(min = 2, max = 30)
 	private String lastName;
 
+	// We need this no argument constructor for Spring MVC to generate an instance
+	// of it when trying to bind form value.
 	public Spitter() {
 
 	}

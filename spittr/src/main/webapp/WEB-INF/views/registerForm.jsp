@@ -33,6 +33,8 @@
 				value="${errors!=null && errors.hasFieldErrors('password')?errors.getFieldError('password').getDefaultMessage():'' }" />
 		</span> <br /> <input type="submit" value="Register" />
 	</form>
-
+	<c:forEach var="error" items="${errors.getGlobalErrors() }">
+		<li><c:out value="${error.getDefaultMessage()}" /></li>
+	</c:forEach>
 </body>
 </html>

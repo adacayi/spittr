@@ -3,6 +3,7 @@ package com.sanver.trials.spittr.spitter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.sanver.trials.spittr.Spitter;
@@ -30,6 +31,8 @@ public class SpitterController {
 	public String processRegistration(@Valid Spitter spitter, BindingResult errors, Model model) {
 		if (errors.hasErrors()) {
 			model.addAttribute(spitter);
+			ObjectError formError = new ObjectError("spitter", "Form is invalid due to above errors");
+			errors.addError(formError);
 			model.addAttribute("errors", errors);
 			return "registerForm";
 		}

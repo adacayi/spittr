@@ -1,5 +1,7 @@
 package com.sanver.trials.spittr;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -10,17 +12,20 @@ public class Spitter {
 	private static Object lockObject = new Object();
 	private Long id;
 	@NotNull
-	@Size(min = 5, max = 16)
+	@Size(min = 5, max = 16, message = "Username must be between {min} and {max} characters long.")
 	private String username;
 	@NotNull
-	@Size(min = 5, max = 25)
+	@Size(min = 5, max = 25, message = "Password must be between {min} and {max} characters long.")
 	private String password;
 	@NotNull
-	@Size(min = 2, max = 30)
+	@Size(min = 2, max = 30, message = "First name must be between {min} and {max} characters long.")
 	private String firstName;
 	@NotNull
-	@Size(min = 2, max = 30)
+	@Size(min = 2, max = 30, message = "Last name must be between {min} and {max} characters long.")
 	private String lastName;
+	@NotEmpty(message = "Email must not be empty.")
+	@Email(message = "The email address must be valid.")
+	private String email;
 
 	// We need this no argument constructor for Spring MVC to generate an instance
 	// of it when trying to bind form value.
@@ -63,6 +68,10 @@ public class Spitter {
 		this.lastName = lastName;
 	}
 
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public long getId() {
 		return id;
 	}
@@ -81,6 +90,10 @@ public class Spitter {
 
 	public String getLastName() {
 		return lastName;
+	}
+
+	public String getEmail() {
+		return email;
 	}
 
 	@Override

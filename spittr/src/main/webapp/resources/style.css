@@ -1,0 +1,15 @@
+div.error {
+	border: 1px dashed red;
+}
+
+label.error, span.error {
+	color: red;
+}
+
+input, input.error {
+	border-radius: 2px;
+}
+
+input.error, div.error {
+	background: #ffcccc;
+}
